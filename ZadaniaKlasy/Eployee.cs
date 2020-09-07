@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Zad1
 {
-    class Eployee
+    class Eployee : Program
     {
 
         string name;
         string surname;
         double hourlyRate;
-        Double payment = 0;
-        public double Payment { get; set; }
+        Double payment;
+        
         public Eployee(string name="Nie podano", string surname="Nie podano", double hourlyRate=0.0)
         {
             this.name = name;   this.surname = surname; this.hourlyRate = hourlyRate;
@@ -27,11 +27,11 @@ namespace Zad1
             }
             else if (hours>8)
             {
-                payment = 8 * 100 + (hours-8)*200;
+                payment = payment + 8 * 100 + (hours-8)*200;
             }
             else
             {
-                payment = 0;
+                payment = payment + 0;
             }
         }
 
