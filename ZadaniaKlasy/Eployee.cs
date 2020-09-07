@@ -23,15 +23,15 @@ namespace Zad1
         {
             if (hours <= 8&&hours>0)
             {
-                payment = hours*hourlyRate;
+                payment += hours*hourlyRate;
             }
             else if (hours>8)
             {
-                payment = payment + 8 * 100 + (hours-8)*200;
+                payment += 8 * 100 + (hours-8)*200;
             }
             else
             {
-                payment = payment + 0;
+                payment += payment + 0;
             }
         }
 
