@@ -8,7 +8,6 @@ namespace Zad2
 {
     class PeselValidationResult:Program
     {
-        bool peselCorrect;
         string dateOfBirth;
         string Error ="Błąd";
         char[] peselArray;
@@ -22,8 +21,27 @@ namespace Zad2
         {
             peselArray = pesel.ToCharArray();
         }
+        private bool IsCorrect()
+        {
+            return false; 
+        }
 
-        public string DateOfBirth()
+
+        private string WomanOrMan()
+        {
+
+            int genderNumber = Convert.ToInt32(peselArray[9].ToString())%2;
+            int woman = Convert.ToInt32(Gender.Woman);
+            if (genderNumber==woman)
+            {
+                return "Kobieta";
+            }
+            else
+            {
+                return "Mężczyzna";
+            }
+        }
+        private string DateOfBirth()
         {
             int month=0;
             int yearFirstNumbers;
@@ -93,13 +111,13 @@ namespace Zad2
                     sMonth = "Grudnień";
                     break;
             }
-
-            return $"{yearFirstNumbers}{peselArray[0]}{peselArray[1]} {sMonth}";
+            dateOfBirth = $"{yearFirstNumbers}{peselArray[0]}{peselArray[1]} {sMonth} {peselArray[4]}{peselArray[5]}";
+            return dateOfBirth;
         }
+
         public void output()
         {
-            dateOfBirth = DateOfBirth();
-            Console.WriteLine(dateOfBirth);
+            Console.WriteLine($"{DateOfBirth()} {WomanOrMan()}");
         }
 
     }
