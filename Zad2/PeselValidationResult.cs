@@ -9,7 +9,7 @@ namespace Zad2
     class PeselValidationResult:Program
     {
         string dateOfBirth;
-        string Error ="Błąd";
+        string Error ="  Wystąpił błąd";
         char[] peselArray;
         enum Gender
         {
@@ -21,9 +21,47 @@ namespace Zad2
         {
             peselArray = pesel.ToCharArray();
         }
+
+        public void Info()
+        {
+            if (peselArray.Length == 11)
+            {
+                if (IsCorrect())
+                {
+                    Console.WriteLine($"{DateOfBirth()} {WomanOrMan()}");
+                }
+                else
+                {
+                    Console.WriteLine(Error);
+                    Console.WriteLine("Podany pesel jest nie prawidłowy");
+                }
+            }
+            else
+            {
+                Console.WriteLine(Error);
+                Console.WriteLine("podany pesel nie zawiera 11 znaków");
+            }
+        }
         private bool IsCorrect()
         {
-            return false; 
+            int one = Convert.ToInt32(peselArray[0].ToString());
+            int two = Convert.ToInt32(peselArray[1].ToString());
+            int three = Convert.ToInt32(peselArray[2].ToString());
+            int four = Convert.ToInt32(peselArray[3].ToString());
+            int five = Convert.ToInt32(peselArray[4].ToString());
+            int six = Convert.ToInt32(peselArray[5].ToString());
+            int seven = Convert.ToInt32(peselArray[6].ToString());
+            int eight = Convert.ToInt32(peselArray[7].ToString());
+            int nine = Convert.ToInt32(peselArray[8].ToString());
+            int ten = Convert.ToInt32(peselArray[9].ToString());
+            if (10-(one+two*3+three*7+four*9+five+six*3+seven*7+eight*9+nine+ten*3)%10==Convert.ToInt32(peselArray[10].ToString()))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
 
@@ -115,10 +153,6 @@ namespace Zad2
             return dateOfBirth;
         }
 
-        public void output()
-        {
-            Console.WriteLine($"{DateOfBirth()} {WomanOrMan()}");
-        }
 
     }
 }
