@@ -7,13 +7,11 @@ namespace Zad2
 {
     class Program
     {
-        public static char[] pesel;
         static void Main(string[] args)
         {
             Console.WriteLine("podaj pesel");
-            pesel = Console.ReadLine().ToCharArray();
-
-            Console.WriteLine(pesel[3]);
+            PeselValidationResult pesel = new PeselValidationResult(Console.ReadLine());
+            pesel.output();
             Console.ReadKey();
         }
     }
