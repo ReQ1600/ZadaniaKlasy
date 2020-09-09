@@ -26,15 +26,7 @@ namespace Zad2
         {
             if (peselArray.Length == 11)
             {
-                if (IsCorrect())
-                {
                     Console.WriteLine($"{DateOfBirth()} {WomanOrMan()}");
-                }
-                else
-                {
-                    Console.WriteLine(Error);
-                    Console.WriteLine("Podany pesel jest nie prawidłowy");
-                }
             }
             else
             {
@@ -42,7 +34,7 @@ namespace Zad2
                 Console.WriteLine("podany pesel nie zawiera 11 znaków");
             }
         }
-        private bool IsCorrect()
+        public bool Validation()
         {
             int one = Convert.ToInt32(peselArray[0].ToString());
             int two = Convert.ToInt32(peselArray[1].ToString());
@@ -54,12 +46,22 @@ namespace Zad2
             int eight = Convert.ToInt32(peselArray[7].ToString());
             int nine = Convert.ToInt32(peselArray[8].ToString());
             int ten = Convert.ToInt32(peselArray[9].ToString());
-            if (10-(one+two*3+three*7+four*9+five+six*3+seven*7+eight*9+nine+ten*3)%10==Convert.ToInt32(peselArray[10].ToString()))
+            if (peselArray.Length == 11)
             {
-                return true;
+
+                if (10 - (one + two * 3 + three * 7 + four * 9 + five + six * 3 + seven * 7 + eight * 9 + nine + ten * 3) % 10 == Convert.ToInt32(peselArray[10].ToString()))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             else
             {
+                Console.WriteLine(Error);
+                Console.WriteLine("podany pesel nie zawiera 11 znaków");
                 return false;
             }
         }

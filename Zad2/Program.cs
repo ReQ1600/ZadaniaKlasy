@@ -12,6 +12,7 @@ namespace Zad2
         {
             Console.WriteLine("podaj pesel");
             PeselValidationResult pesel = new PeselValidationResult(Console.ReadLine());
+            Console.WriteLine(pesel.Validation());
             pesel.Info();
             Console.ReadKey();
         }
