@@ -31,7 +31,7 @@ namespace zad3
         {
             if (customer.Priority == 3)
             {
-                customersf.Enqueue(customer.Fname+" "+customer.Lname);
+                customersf.Enqueue(customer.Fname+" "+customer.Lname+customer.Priority);
                 
             }
             else if (customer.Priority==2)
@@ -47,7 +47,7 @@ namespace zad3
             Sort();
             
         }
-        public static void Sort()
+        private static void Sort()
         {
             customersTrueList.Clear();
             if (customersf.Count() > 0)
@@ -72,5 +72,34 @@ namespace zad3
                 }
             }
         }
+        /// <summary>
+        /// Usunie pierwszego klienta mającego najwyższy priorytet
+        /// </summary>
+        public static void Dequeue()
+        {
+            if (customersTrueList.Count>0)
+            {
+                if (customersf.Count>0)
+                {
+                    customersf.Dequeue();
+                    customersTrueList.Dequeue();
+                }
+                else if (customerss.Count()>0)
+                {
+                    customerss.Dequeue();
+                    customersTrueList.Dequeue();
+                }
+                else
+                {
+                    customerst.Dequeue();
+                    customersTrueList.Dequeue();
+                }
+            }
+
+        }
+        /// <summary>
+        /// liczy ile elementów jest w kolejce
+        /// </summary>
+        public static int Count() => customersTrueList.Count();
     }
 }
