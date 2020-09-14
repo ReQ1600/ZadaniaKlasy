@@ -10,8 +10,7 @@ namespace zad4
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(conversion.ArabskieNaRzymskie(93));
-            Console.WriteLine(231%1000);
+            Console.WriteLine(conversion.ArabskieNaRzymskie(64));
             Console.ReadKey();
         }
     }

@@ -6,62 +6,47 @@ using System.Threading.Tasks;
 
 namespace zad4
 {
-    class NonStaticStuff
-    {
-        private readonly SortedDictionary<int, string> ArabskieRzymskie = new SortedDictionary<int, string>
-        {
-            {1, "I" },
-            {4,"IV" },
-            {5, "V" },
-            {9, "IX" },
-            {10, "X" },
-            {40, "XL" },
-            {50, "L" },
-            {90, "XC" },
-            {100, "C" },
-            {400, "CD" },
-            {500, "D" },
-            {900, "CM" },
-            {1000, "M" }
-        };
-        
+    class NonStaticStuff//w sensie nie statyczna klasa (nie miałem pomysłu jak nazwać)
+    {   
         static public string ArabskieNaRzymskie(int number)
         {
+            
             if (number <= 3999 && number >= 1)
             {
+                char[] numberArray = number.ToString().ToCharArray();
                 int numberLenght = number.ToString().Length;
                 if (numberLenght == 1)
                 {
-                    return SingleDigit(number);
+                    return SingleDigit(numberArray, 0);
                 }
                 else if (numberLenght == 2)
                 {
-                    return DoubleDigit(number) + SingleDigit(number);
+                    return DoubleDigit(numberArray, 0) + SingleDigit(numberArray, 1);
                 }
                 else if (numberLenght == 3)
                 {
-                    return TripleDigit(number) + DoubleDigit(number) + SingleDigit(number);
+                    return TripleDigit(numberArray, 0) + DoubleDigit(numberArray, 1) + SingleDigit(numberArray, 2);
                 }
                 else
                 {
-                    return QuadrupleDigit(number) + TripleDigit(number) + DoubleDigit(number) + SingleDigit(number);
+                    return QuadrupleDigit(numberArray, 0) + TripleDigit(numberArray, 1) + DoubleDigit(numberArray, 2) + SingleDigit(numberArray, 3);
                 }
                 
             }
             else
             {
                 Console.WriteLine("Podana liczba musi być z przedziału <1, 3999>");
-                return ("-1");
+                return (null);
             }
         }
         static public int RzymskieNaArabskie(string number)
         {
             return 0;
         }
-        private static string SingleDigit(int number)
+        private static string SingleDigit(char[] numberArray,int n)
         {
-            int o = number % 10;
-            switch (o)
+            int first = Convert.ToInt32(numberArray[n].ToString());
+            switch (first)
             {
                 case 1:
                     return "I";
@@ -81,14 +66,13 @@ namespace zad4
                     return "VIII";
                 case 9:
                     return "IX";
-                default:
-                    return "_";
             }
+            return null;
         }
-        private static string DoubleDigit(int number)
+        private static string DoubleDigit(char[] numberArray, int n)
         {
-            int o = number % 100;
-            switch (o)
+            int second = Convert.ToInt32(numberArray[n].ToString());
+            switch (second)
             {
                 case 1:
                     return "X";
@@ -108,14 +92,13 @@ namespace zad4
                     return "LXXX";
                 case 9:
                     return "XC";
-                default:
-                    return "_";
             }
+            return null;
         }
-        private static string TripleDigit(int number)
+        private static string TripleDigit(char[] numberArray, int n)
         {
-            int o = number % 1000;
-            switch (o)
+            int third = Convert.ToInt32(numberArray[n].ToString());
+            switch (third)
             {
                 case 1:
                     return "C";
@@ -135,14 +118,13 @@ namespace zad4
                     return "DCCC";
                 case 9:
                     return "CM";
-                default:
-                    return "_";
             }
+            return null;
         }
-        private static string QuadrupleDigit(int number)
+        private static string QuadrupleDigit(char[] numberArray, int n)
         {
-            int o = number % 10000;
-            switch (o)
+            int fourth = Convert.ToInt32(numberArray[n].ToString());
+            switch (fourth)
             {
                 case 1:
                     return "M";
@@ -150,9 +132,8 @@ namespace zad4
                     return "MM";
                 case 3:
                     return "MMM";
-                default:
-                    return "_";
             }
+            return null;
         }
     }
 }
