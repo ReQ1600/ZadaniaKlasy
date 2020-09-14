@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,20 +13,26 @@ namespace zad3
         public static void Main(string[] args)
         {
             Customer c1 = new Customer("Adam", "Nowak", 1);
-            Customer c2 = new Customer("Agnieszka", "Słup", 1);
-            Customer c3 = new Customer("Tomasz", "Kreatywny", 2);
-            Customer c4 = new Customer("Konrad", "Konradowicz",3);
-            Customer c5 = new Customer("Jan", "Pawlak",3);
+            Customer c2 = new Customer("Agnieszka", "Słup", 2);
+            Customer c3 = new Customer("Konrad", "Konradowicz",1);
+            Customer c4 = new Customer("Jan", "Pawlak",3);
+            Customer c5 = new Customer("Jan", "Pawalak",2);
 
-            QueuePriority.Enqueue(c1);
-            QueuePriority.Enqueue(c2);
-            QueuePriority.Enqueue(c3);
-            QueuePriority.Enqueue(c4);
-            QueuePriority.Count();
-            QueuePriority.Dequeue();
-            QueuePriority.Dequeue();
-            QueuePriority.Enqueue(c5);
-            Console.WriteLine(QueuePriority.Count());
+            Console.WriteLine(c2.ToString());
+            QueuePriority queue = new QueuePriority();
+            queue.Enqueue(c1);
+            queue.Enqueue(c2);
+            queue.Enqueue(c3);
+            queue.Enqueue(c4);
+
+            Console.WriteLine(queue.Count());
+
+            //tylko wyświetla tablice (nic ważnego)
+            Hashtable stats = queue.Stats();
+            foreach (string item in stats.Keys)
+            {
+                Console.WriteLine(item +" "+stats[item]);
+            }
 
 
             Console.ReadKey();
