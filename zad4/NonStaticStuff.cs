@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace zad4
 {
     class NonStaticStuff//w sensie nie statyczna klasa (nie miałem pomysłu jak nazwać)
-    {   
+    {
         static public string ArabskieNaRzymskie(int number)
         {
             
@@ -41,6 +41,44 @@ namespace zad4
         }
         static public int RzymskieNaArabskie(string number)
         {
+            
+            char[] array = number.ToCharArray();
+            int pos = array.Count() - 1;
+            int lenght = array.Count();
+            switch (array[pos])
+            {
+                case 'I':
+
+                    if (lenght >= 2)
+                    {
+                        if (array[pos-1].Equals('V'))
+                        {
+                            return 6;
+                        }
+                        if (array[pos - 1].Equals('I'))
+                        {
+                            
+                            if (lenght >= 3)
+                            {
+                                if (array[pos - 2].Equals('V'))
+                                {
+                                    return 7;
+                                }
+                                if (array[pos - 2].Equals('I'))
+                                {
+                                    if (array.Count() >= 4) 
+                                    {
+                                        return 8;
+                                    }
+                                    return 3;
+                                }
+                            }
+                            return 2;
+                        }
+                    }
+                    return 1;
+                    
+            }
             return 0;
         }
         private static string SingleDigit(char[] numberArray,int n)
@@ -135,5 +173,6 @@ namespace zad4
             }
             return null;
         }
+
     }
 }
