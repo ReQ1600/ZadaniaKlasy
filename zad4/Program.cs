@@ -11,7 +11,7 @@ namespace zad4
         static void Main(string[] args)
         {
             Console.WriteLine(conversion.ArabskieNaRzymskie(64));
-            Console.WriteLine(conversion.RzymskieNaArabskie("VII"));
+            Console.WriteLine(conversion.RzymskieNaArabskie(""));
             Console.ReadKey();
         }
     }

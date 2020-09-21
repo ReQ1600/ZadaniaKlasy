@@ -8,6 +8,8 @@ namespace zad4
 {
     class NonStaticStuff//w sensie nie statyczna klasa (nie miałem pomysłu jak nazwać)
     {
+        static int Pos;
+        static string num;
         static public string ArabskieNaRzymskie(int number)
         {
             
@@ -43,43 +45,13 @@ namespace zad4
         {
             
             char[] array = number.ToCharArray();
-            int pos = array.Count() - 1;
             int lenght = array.Count();
-            switch (array[pos])
+            if (Pos < array.Count())
             {
-                case 'I':
-
-                    if (lenght >= 2)
-                    {
-                        if (array[pos-1].Equals('V'))
-                        {
-                            return 6;
-                        }
-                        if (array[pos - 1].Equals('I'))
-                        {
-                            
-                            if (lenght >= 3)
-                            {
-                                if (array[pos - 2].Equals('V'))
-                                {
-                                    return 7;
-                                }
-                                if (array[pos - 2].Equals('I'))
-                                {
-                                    if (array.Count() >= 4) 
-                                    {
-                                        return 8;
-                                    }
-                                    return 3;
-                                }
-                            }
-                            return 2;
-                        }
-                    }
-                    return 1;
-                    
+                int pos = Pos;
+                ToRoman(array,pos);
             }
-            return 0;
+            return Convert.ToInt32(num);
         }
         private static string SingleDigit(char[] numberArray,int n)
         {
@@ -172,6 +144,44 @@ namespace zad4
                     return "MMM";
             }
             return null;
+        }
+        private static void ToRoman(char[]array,int pos)
+        {
+            switch (array[pos])
+            {
+                case 'I':
+                    if (pos + 1 <= array.Count()-1)
+                    {
+                        if (array[pos + 1].Equals('I')) 
+                        {
+                            if (pos + 2 <= array.Count())
+                            {
+                                if (pos + 3 <= array.Count())
+                                {
+                                    if (array[pos + 2].Equals('I'))
+                                    {
+                                        Pos += 3;
+                                        num += "3";
+                                        break;
+                                    }
+                                }
+                                Pos += 2;
+                                num += "2";
+                                break;
+                            }
+                        }
+                        else if (array[pos+1].Equals('V'))
+                        {
+                            Pos++;
+                            num += "4";
+                            break;
+                        }
+                    }
+
+                    Pos++;
+                    num += "1";
+                break;
+            }
         }
 
     }
